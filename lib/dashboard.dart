@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 
 class Dashboard extends StatelessWidget {
-  const Dashboard({super.key});
+  const Dashboard(this.startQuiz, {super.key});
 
-  void startQuiz() {}
+  final void Function() startQuiz;
+
   @override
   Widget build(context) {
     return Center(
@@ -32,7 +33,9 @@ class Dashboard extends StatelessWidget {
             foregroundColor: Colors.white,
             // textStyle: const TextStyle(color: Colors.deepPurpleAccent),
           ),
-          onPressed: startQuiz,
+          onPressed: () {
+            startQuiz();
+          },
           label: const Text(
             'Start Quiz',
           ),
