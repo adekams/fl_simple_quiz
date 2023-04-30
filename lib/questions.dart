@@ -19,33 +19,28 @@ class _QuestionScreenState extends State<QuestionScreen> {
     // use sizwdBox width to take all available space
     return SizedBox(
       width: double.infinity,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text(
-            currentQuestion.text,
-            style: const TextStyle(color: Colors.white),
-          ),
-          const SizedBox(
-            height: 30,
-          ),
-          AnswerButton(
-            onBtnClick: () {},
-            answerText: currentQuestion.answers[0],
-          ),
-          AnswerButton(
-            onBtnClick: () {},
-            answerText: currentQuestion.answers[1],
-          ),
-          AnswerButton(
-            onBtnClick: () {},
-            answerText: currentQuestion.answers[2],
-          ),
-          AnswerButton(
-            onBtnClick: () {},
-            answerText: currentQuestion.answers[3],
-          ),
-        ],
+      child: Padding(
+        padding: const EdgeInsets.all(50),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Text(
+              currentQuestion.text,
+              textAlign: TextAlign.center,
+              style: const TextStyle(color: Colors.white),
+            ),
+            const SizedBox(
+              height: 30,
+            ),
+            ...currentQuestion.shuffleAnswers().map((answer) {
+              return AnswerButton(
+                answerText: answer,
+                onBtnClick: () {},
+              );
+            })
+          ],
+        ),
       ),
     );
   }
