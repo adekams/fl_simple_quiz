@@ -14,7 +14,7 @@ class AnswerButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
       onPressed: onBtnClick,
-      child: const Text('answerText'),
+      child: Text(answerText),
     );
   }
 }
