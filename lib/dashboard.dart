@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class Dashboard extends StatelessWidget {
   const Dashboard(this.startQuiz, {super.key});
@@ -17,10 +18,10 @@ class Dashboard extends StatelessWidget {
         const SizedBox(
           height: 80,
         ),
-        const Text(
+        Text(
           'Learn Flutter the Fun Way!',
-          style: TextStyle(
-            color: Colors.white,
+          style: GoogleFonts.roboto(
+            color: const Color.fromARGB(255, 190, 124, 235),
             fontSize: 24,
             fontWeight: FontWeight.w500,
           ),
