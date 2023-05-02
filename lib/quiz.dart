@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:adv_basics/dashboard.dart';
 import 'package:adv_basics/questions.dart';
+import 'package:adv_basics/data/questions_content.dart';
 
 class Quiz extends StatefulWidget {
   const Quiz({super.key});
@@ -12,12 +13,24 @@ class Quiz extends StatefulWidget {
 }
 
 class _QuizState extends State<Quiz> {
+  List<String> selectedAnswers = [];
   var currentScreen = 'dashboard';
 
   void changeScreen() {
     setState(() {
       currentScreen = 'question-screen';
     });
+  }
+
+  void chooseAnswer(String answer) {
+    selectedAnswers.add(answer);
+
+    if (selectedAnswers.length == questionContent.length) {
+      setState(() {
+        currentScreen = 'dashboard';
+        selectedAnswers = [];
+      });
+    }
   }
 
   @override
@@ -37,7 +50,9 @@ class _QuizState extends State<Quiz> {
           ),
           child: currentScreen == 'dashboard'
               ? Dashboard(changeScreen)
-              : const QuestionScreen(),
+              : QuestionScreen(
+                  onSelectAnswer: chooseAnswer,
+                ),
         ),
       ),
     );
