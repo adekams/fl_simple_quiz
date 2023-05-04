@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:adv_basics/models/question_summary.dart';
 import 'package:adv_basics/data/questions_content.dart';
 
 class Result extends StatelessWidget {
-  Result({super.key, required this.chosenAnswers});
+  const Result({super.key, required this.chosenAnswers});
 
-  List<String> chosenAnswers = [];
+  final List<String> chosenAnswers;
 
   List<Map<String, Object>> getSummaryData() {
     final List<Map<String, Object>> summary = [];
@@ -13,7 +14,7 @@ class Result extends StatelessWidget {
       summary.add(
         {
           'question_number': i + 1,
-          'question': questionContent[i],
+          'question': questionContent[i].text,
           'correct_answer': questionContent[i].answers[0],
           'choosen_answer': chosenAnswers[i],
         },
@@ -23,7 +24,7 @@ class Result extends StatelessWidget {
   }
 
   @override
-  Widget build(context) {
+  Widget build(BuildContext context) {
     return SizedBox(
       width: double.infinity,
       child: Container(
@@ -34,6 +35,12 @@ class Result extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const Text('You answered x questions correctly'),
+            const SizedBox(
+              height: 30,
+            ),
+            QuestionsSummary(
+              getSummaryData(),
+            ),
             const SizedBox(
               height: 30,
             ),
