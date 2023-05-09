@@ -37,4 +37,13 @@ const questionContent = [
       'Restful Widget',
     ],
   ),
+  QuizQuestion(
+    'Which widget should you try to use more often, without a regard to what you\'re building at times: StatelessWidget or StatefulWidget?',
+    [
+      'StatelessWidget',
+      'StatefulWidget',
+      'Both are equally good',
+      'None of the above',
+    ],
+  )
 ];
