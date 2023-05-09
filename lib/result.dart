@@ -35,9 +35,7 @@ class Result extends StatelessWidget {
     return SizedBox(
       width: double.infinity,
       child: Container(
-        margin: const EdgeInsets.all(
-          40,
-        ),
+        margin: const EdgeInsets.all(40),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -50,7 +48,7 @@ class Result extends StatelessWidget {
               summaryData,
             ),
             const SizedBox(
-              height: 30,
+              height: 40,
             ),
             OutlinedButton.icon(
               style: OutlinedButton.styleFrom(
