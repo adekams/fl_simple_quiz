@@ -34,6 +34,14 @@ class _QuizState extends State<Quiz> {
     }
   }
 
+  void restartQuiz() {
+    debugPrint('restarted');
+    selectedAnswers.clear();
+    setState(() {
+      currentScreen = 'dashbp=oard';
+    });
+  }
+
   @override
   Widget build(context) {
     Widget screenWidget = Dashboard(changeScreen);
@@ -47,6 +55,7 @@ class _QuizState extends State<Quiz> {
     if (currentScreen == 'result-screen') {
       screenWidget = Result(
         chosenAnswers: selectedAnswers,
+        onRestart: restartQuiz,
       );
     }
 
