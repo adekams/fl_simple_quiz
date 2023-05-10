@@ -3,7 +3,10 @@ import 'package:adv_basics/models/question_summary.dart';
 import 'package:adv_basics/data/questions_content.dart';
 
 class Result extends StatelessWidget {
-  const Result({super.key, required this.chosenAnswers});
+  const Result(
+      {super.key, required this.chosenAnswers, required this.onRestart});
+
+  final void Function() onRestart;
 
   final List<String> chosenAnswers;
 
@@ -28,9 +31,9 @@ class Result extends StatelessWidget {
     final summaryData = getSummaryData();
 
     final numTotalQuestions = questionContent.length;
-    final numCorrectQuestions = summaryData.where((data) {
-      return data['choosen_answer'] == data['correct_answer'];
-    }).length;
+    final numCorrectQuestions = summaryData
+        .where((data) => data['choosen_answer'] == data['correct_answer'])
+        .length;
 
     return SizedBox(
       width: double.infinity,
@@ -40,7 +43,14 @@ class Result extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-                'You answered $numCorrectQuestions out of $numTotalQuestions questions correctly'),
+              'You answered $numCorrectQuestions out of $numTotalQuestions questions correctly!',
+              textAlign: TextAlign.center,
+              style: const TextStyle(
+                color: Color.fromARGB(255, 204, 187, 219),
+                fontSize: 20,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
             const SizedBox(
               height: 30,
             ),
@@ -55,7 +65,9 @@ class Result extends StatelessWidget {
                 foregroundColor: Colors.white,
                 // textStyle: const TextStyle(color: Colors.deepPurpleAccent),
               ),
-              onPressed: () {},
+              onPressed: () {
+                onRestart();
+              },
               label: const Text(
                 'Restart Quiz',
               ),
